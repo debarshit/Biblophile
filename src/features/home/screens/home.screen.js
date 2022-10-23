@@ -1,7 +1,11 @@
 import React from "react";
 import { Searchbar } from "react-native-paper";
-import { StatusBar, SafeAreaView, Text, View } from "react-native";
+import { StatusBar, SafeAreaView, FlatList, Text, View } from "react-native";
 import styled from "styled-components/native";
+
+import { Spacer } from "../../../components/spacer.component";
+
+import { BookListContainer } from "../components/book-list-container.component";
 
 const SafeArea = styled(SafeAreaView)`
   flex: 1;
@@ -23,7 +27,31 @@ export const HomeScreen = () => (
       <Searchbar />
     </SearchContainer>
     <BookGenreListContainer>
-      <Text>Here you gotta do cool stuffs</Text>
+    <FlatList
+      data={[
+        { name: 1 },
+        { name: 2 },
+        { name: 3 },
+        { name: 4 },
+        { name: 5 },
+        { name: 6 },
+        { name: 7 },
+        { name: 8 },
+        { name: 9 },
+        { name: 10 },
+        { name: 11 },
+        { name: 12 },
+        { name: 13 },
+        { name: 14 },
+      ]}
+      renderItem={() => (
+        <Spacer position="bottom" size="large">
+          <BookListContainer />
+        </Spacer>
+      )}
+      keyExtractor={(item) => item.name}
+      contentContainerStyle={{ padding: 16 }}
+    />
     </BookGenreListContainer>
   </SafeArea>
 );
