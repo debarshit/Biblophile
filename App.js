@@ -1,6 +1,7 @@
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import React from "react";
 import { ThemeProvider } from "styled-components/native";
+import { BooksContextProvider } from "./src/services/books/books.context";
 
 import {
   useFonts as useOswald,
@@ -27,7 +28,9 @@ export default function App() {
   return (
     <>
     <ThemeProvider theme={theme}>
-      <HomeScreen />
+      <BooksContextProvider>
+        <HomeScreen />
+      </BooksContextProvider>
     </ThemeProvider>
     <ExpoStatusBar style="auto" />
     </>

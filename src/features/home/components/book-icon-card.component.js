@@ -10,7 +10,7 @@ import {
 
 export const BookIconCard = ({ book = {} }) => {
   const {
-    BookName = "Some Book",
+    BookName = "Some Book hddhdfhdhdf",
     BookPhotos = [
       "https://media.gettyimages.com/photos/stack-of-books-picture-id157482029?s=612x612",
     ],

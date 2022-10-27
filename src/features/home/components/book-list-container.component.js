@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from "react";
 import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar } from 'react-native';
 
 import { Spacer } from "../../../components/spacer/spacer.component";
 
 import { BookIconCard } from './book-icon-card.component';
+
+import { BooksContext } from "../../../services/books/books.context";
+
 
 const DATA = [
   {
@@ -38,14 +41,15 @@ const Item = ({ title }) => (
   </View>
 );
 
-export const BookListContainer = () => {
+export const BookListContainer = ({ book }) => {
+  const { books } = useContext(BooksContext);
   
   return (
     <>
-        <Text>Action/Adventure</Text>
+        <Text>{ book.BookGenre }</Text>
         <FlatList
           horizontal={true}
-          data={DATA}
+          data={books}
           renderItem={({ item }) => {
             return (
               <Spacer position="right" size="small">
