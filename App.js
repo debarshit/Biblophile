@@ -1,6 +1,8 @@
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import React from "react";
 import { ThemeProvider } from "styled-components/native";
+
+import { BooksGenreContextProvider } from "./src/services/books/booksGenre.context";
 import { BooksContextProvider } from "./src/services/books/books.context";
 
 import {
@@ -28,9 +30,11 @@ export default function App() {
   return (
     <>
     <ThemeProvider theme={theme}>
-      <BooksContextProvider>
-        <HomeScreen />
-      </BooksContextProvider>
+      <BooksGenreContextProvider>
+        <BooksContextProvider>
+          <HomeScreen />
+        </BooksContextProvider>
+      </BooksGenreContextProvider>
     </ThemeProvider>
     <ExpoStatusBar style="auto" />
     </>

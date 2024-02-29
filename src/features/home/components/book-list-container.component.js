@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar } from 'react-native';
 
 import { Spacer } from "../../../components/spacer/spacer.component";
@@ -43,10 +43,13 @@ const Item = ({ title }) => (
 
 export const BookListContainer = ({ book }) => {
   const { books } = useContext(BooksContext);
-  
+ 
+  const [bookGenre, setBookGenre] = useState(book.BookGenre);
+
   return (
     <>
-        <Text>{ book.BookGenre }</Text>
+        <Text>{book.BookGenre}</Text>
+        <Text>{bookGenre}</Text>
         <FlatList
           horizontal={true}
           data={books}
@@ -57,10 +60,10 @@ export const BookListContainer = ({ book }) => {
               </Spacer>
             );
           }}
-          keyExtractor={item => item.id} />
+          keyExtractor={(item) => item.BookId} />
     </>
   );
-}
+  }
 
 const styles = StyleSheet.create({
   item: {

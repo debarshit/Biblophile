@@ -5,6 +5,7 @@ import { booksRequest } from "./books.service";
 export const BooksContext = createContext();
 
 export const BooksContextProvider = ({ children }) => {
+  const [bookGenre, setBookGenre] = useState();
   const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -12,10 +13,11 @@ export const BooksContextProvider = ({ children }) => {
   const retrieveBooks = () => {
     setIsLoading(true);
 
-    booksRequest()
+    booksRequest("Action/Adventure")
       .then((results) => {
         setIsLoading(false);
         setBooks(results);
+        setBookGenre(bookGenre);
       })
       .catch((err) => {
         setIsLoading(false);
@@ -29,6 +31,7 @@ export const BooksContextProvider = ({ children }) => {
   return (
     <BooksContext.Provider
       value={{
+        bookGenre,
         books,
         isLoading,
         error,

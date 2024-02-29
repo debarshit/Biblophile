@@ -7,7 +7,7 @@ import { Spacer } from "../../../components/spacer/spacer.component";
 
 import { BookListContainer } from "../components/book-list-container.component";
 
-import { BooksContext } from "../../../services/books/books.context";
+import { BooksGenreContext } from "../../../services/books/booksGenre.context";
 
 const SafeArea = styled(SafeAreaView)`
   flex: 1;
@@ -24,25 +24,26 @@ const BookGenreListContainer = styled.View`
 `;
 
 export const HomeScreen = () => {
-  const { isLoading, error, books } = useContext(BooksContext);
-  console.log(error);
+  const { isLoadingBooksGenre, errorBooksGenre, booksGenre } = useContext(BooksGenreContext);
+  console.log(errorBooksGenre);
   return (
   <SafeArea>
     <SearchContainer>
       <Searchbar />
     </SearchContainer>
     <BookGenreListContainer>
-    <FlatList
-      data={books}
-      renderItem={({ item }) => {
-        return (
-          <Spacer position="bottom" size="large">
-            <BookListContainer book={item} />
-          </Spacer>
-        );
-      }}
-      keyExtractor={(item) => item.BookId}
-    />
+      <FlatList
+        data={booksGenre}
+        renderItem={({ item }) => {
+          return (
+            <Spacer position="bottom" size="large">
+              <Text>{item.BookGenre}</Text>
+              <BookListContainer book={item} />
+            </Spacer>
+          );
+        }}
+        keyExtractor={(item) => item.BookGenre}
+      />
     </BookGenreListContainer>
   </SafeArea>
   );
